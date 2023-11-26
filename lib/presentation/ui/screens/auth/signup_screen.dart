@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:travelo/presentation/ui/screens/auth/signup_screen.dart';
+import 'package:travelo/presentation/ui/screens/auth/signin_screen.dart';
 import 'package:travelo/presentation/ui/utility/assets_path.dart';
 import 'package:travelo/presentation/ui/widgets/form_container.dart';
 import 'package:travelo/presentation/ui/widgets/optional_login_container.dart';
 
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign in'),
+        title: const Text('Sign In'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -98,7 +98,7 @@ class SignInScreen extends StatelessWidget {
                       ),
                     ),
                     child: const Text(
-                      'Sign in',
+                      'Sign up',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -160,7 +160,7 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'Don’t have any account?',
+                      'Already have an account?',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -172,10 +172,10 @@ class SignInScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.to(() => const SignUpScreen());
+                        Get.to(() => SignInScreen());
                       },
                       child: const Text(
-                        'Register Now',
+                        'Sign in',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w400,
