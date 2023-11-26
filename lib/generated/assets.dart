@@ -3,6 +3,7 @@ class Assets {
   Assets._();
 
   static const String applicationApp = 'lib/application/app.dart';
+  static const String applicationStateHolderBinder = 'lib/application/state_holder_binder.dart';
   static const String authSigninScreen = 'lib/presentation/ui/screens/auth/signin_screen.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
   static const String imagesTraveloLogo = 'assets/images/travelo_logo.svg';

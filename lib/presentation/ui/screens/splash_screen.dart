@@ -29,7 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: SvgPicture.asset(AssetsPath.traveloLogoSVG),
+          child: SvgPicture.asset(
+            AssetsPath.traveloLogoSVG,
+          ),
         ),
       ),
     );
