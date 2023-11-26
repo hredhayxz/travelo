@@ -13,41 +13,34 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign In'),
+        title: const Text('Sign up'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 const SizedBox(
                   height: 20,
                 ),
-                Center(
-                  child: Column(
-                    children: [
-                      SvgPicture.asset(
-                        AssetsPath.personIconSVG,
-                      ),
-                      const Text(
-                        'Welcome Back!',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromRGBO(47, 47, 47, 1),
-                        ),
-                      ),
-                      const Text(
-                        'Please login to continue',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Color.fromRGBO(85, 85, 104, 1),
-                        ),
-                      ),
-                    ],
+                SvgPicture.asset(
+                  AssetsPath.personIconSVG,
+                ),
+                const Text(
+                  'Welcome Back!',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                    color: Color.fromRGBO(47, 47, 47, 1),
+                  ),
+                ),
+                const Text(
+                  'Please sign up to continue',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: Color.fromRGBO(85, 85, 104, 1),
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -70,17 +63,6 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 const SizedBox(
                   height: 10,
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: const Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Color.fromRGBO(52, 152, 219, 1),
-                    ),
-                  ),
                 ),
                 const SizedBox(
                   height: 20,

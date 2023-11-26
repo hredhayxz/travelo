@@ -31,6 +31,9 @@ class SignInScreen extends StatelessWidget {
                       SvgPicture.asset(
                         AssetsPath.personIconSVG,
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       const Text(
                         'Welcome Back!',
                         style: TextStyle(
