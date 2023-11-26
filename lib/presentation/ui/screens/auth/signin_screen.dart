@@ -188,6 +188,9 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 40,
+                ),
               ],
             ),
           ),
