@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:travelo/presentation/ui/screens/auth/signin_screen.dart';
 import 'package:travelo/presentation/ui/utility/assets_path.dart';
 import 'package:travelo/presentation/ui/widgets/form_container.dart';
-import 'package:travelo/presentation/ui/widgets/optional_login_container.dart';
+import 'package:travelo/presentation/ui/widgets/optional_signup_login_container.dart';
+import 'package:travelo/presentation/ui/widgets/social_signup_logIn_section.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -12,7 +13,9 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(255,255,255, 1),
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(255,255,255, 1),
         title: const Text('Sign up'),
       ),
       body: SafeArea(
@@ -112,55 +115,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: 75.0,
-                      height: 1.0,
-                      decoration: const BoxDecoration(
-                        color: Color.fromRGBO(227, 227, 227, 1),
-                      ),
-                    ),
-                    const Text(
-                      'OR CONTINUE WITH',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromRGBO(94, 96, 100, 1),
-                      ),
-                    ),
-                    Container(
-                      width: 75.0,
-                      height: 1.0,
-                      decoration: const BoxDecoration(
-                        color: Color.fromRGBO(227, 227, 227, 1),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    OptionalLoginContainer(
-                        optionIcon: AssetsPath.googleIconSVG,
-                        optionTitle: 'Google'),
-                    const SizedBox(
-                      width: 12,
-                    ),
-                    OptionalLoginContainer(
-                        optionIcon: AssetsPath.facebookIconSVG,
-                        optionTitle: 'Facebook'),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SocialSignUpLogInSection(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -201,3 +156,4 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
+

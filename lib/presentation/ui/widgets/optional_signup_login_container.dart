@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class OptionalLoginContainer extends StatelessWidget {
-  const OptionalLoginContainer({
+class OptionalSignUpLoginContainer extends StatelessWidget {
+  const OptionalSignUpLoginContainer({
     super.key,
     required this.optionIcon,
     required this.optionTitle,

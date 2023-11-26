@@ -20,19 +20,32 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> goToNextScreen() async {
     Future.delayed(const Duration(seconds: 2)).then((value) {
-      Get.offAll(() => SignInScreen());
+      Get.offAll(() => const SignInScreen());
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: SvgPicture.asset(
-            AssetsPath.traveloLogoSVG,
+      backgroundColor: const Color.fromRGBO(255,255,255, 1),
+      body: Stack(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: SvgPicture.asset(
+              AssetsPath.splashBgSVG,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
+          SafeArea(
+            child: Center(
+              child: SvgPicture.asset(
+                AssetsPath.traveloLogoSVG,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
