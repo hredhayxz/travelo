@@ -166,7 +166,7 @@ class SignInScreen extends StatelessWidget {
                       'Don’t have any account?',
                       style: TextStyle(
                         fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
                         color: Color.fromRGBO(94, 96, 100, 1),
                       ),
                     ),
@@ -175,13 +175,13 @@ class SignInScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.to(() => const SignUpScreen());
+                        Get.offAll(() => const SignUpScreen());
                       },
                       child: const Text(
                         'Register Now',
                         style: TextStyle(
                           fontSize: 16,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                           color: Color.fromRGBO(52, 152, 219, 1),
                         ),
                       ),

@@ -27,6 +27,9 @@ class SignUpScreen extends StatelessWidget {
                 SvgPicture.asset(
                   AssetsPath.personIconSVG,
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
                 const Text(
                   'Welcome Back!',
                   style: TextStyle(
@@ -45,8 +48,18 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 const FormContainer(
+                  icon: Icons.person,
+                  title: 'Your Full name',
+                  hint: 'Mahmud Saimon',
+                  keyboardType: TextInputType.name,
+                  obscureText: false,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const FormContainer(
                   icon: Icons.email_outlined,
-                  title: 'Your Email Address',
+                  title: 'Your Email',
                   hint: 'example@domain.com',
                   keyboardType: TextInputType.emailAddress,
                   obscureText: false,
@@ -57,6 +70,16 @@ class SignUpScreen extends StatelessWidget {
                 const FormContainer(
                   icon: Icons.lock_outline,
                   title: 'Password',
+                  hint: '........',
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: true,
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                const FormContainer(
+                  icon: Icons.lock_outline,
+                  title: 'Confirm Password',
                   hint: '........',
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
@@ -145,7 +168,7 @@ class SignUpScreen extends StatelessWidget {
                       'Already have an account?',
                       style: TextStyle(
                         fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
                         color: Color.fromRGBO(94, 96, 100, 1),
                       ),
                     ),
@@ -154,13 +177,13 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.to(() => SignInScreen());
+                        Get.offAll(() => const SignInScreen());
                       },
                       child: const Text(
                         'Sign in',
                         style: TextStyle(
                           fontSize: 16,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                           color: Color.fromRGBO(52, 152, 219, 1),
                         ),
                       ),
