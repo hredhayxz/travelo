@@ -5,15 +5,8 @@ import 'package:travelo/presentation/ui/screens/auth/signin_screen.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:travelo/presentation/ui/screens/bottom_nav_controller.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _bottomNavIndex = 0;
 
   @override
   Widget build(BuildContext context) {
