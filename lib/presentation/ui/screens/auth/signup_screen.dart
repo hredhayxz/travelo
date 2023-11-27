@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:travelo/presentation/state_holders/auth/signup_screen_controller.dart';
+import 'package:travelo/presentation/ui/screens/auth/otp_verification_screen.dart';
 import 'package:travelo/presentation/ui/screens/auth/signin_screen.dart';
 import 'package:travelo/presentation/ui/utility/assets_path.dart';
 import 'package:travelo/presentation/ui/widgets/form_container.dart';
@@ -221,7 +222,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.offAll(() => SignInScreen());
+                          Get.offAll(() => const SignInScreen());
                         },
                         child: const Text(
                           'Sign in',
@@ -254,7 +255,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       confirmPasswordController.text,
     );
     if (response) {
-      //Get.dialog(const CongratulationsCustomDialog());
+      Get.offAll(() => OtpVerificationScreen(
+          name: fullNameController.text.trim(),
+          email: emailController.text.trim(),
+          password: passwordController.text,
+          tempOtp: controller.otpCode));
     } else {
       Get.snackbar(
         'Failed',

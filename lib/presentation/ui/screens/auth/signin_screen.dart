@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:travelo/presentation/state_holders/auth/signin_screen_controller.dart';
 import 'package:travelo/presentation/ui/screens/auth/signup_screen.dart';
 import 'package:travelo/presentation/ui/screens/home_screen.dart';
 import 'package:travelo/presentation/ui/utility/assets_path.dart';
@@ -149,36 +150,44 @@ class _SignInScreenState extends State<SignInScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    height: 56,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Get.offAll(() => const HomeScreen());
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: isButtonEnabled
-                            ? const Color.fromRGBO(52, 152, 219, 1)
-                            : const Color.fromRGBO(244, 244, 244, 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                  GetBuilder<SignInScreenController>(
+                      builder: (signInScreenController) {
+                    if (signInScreenController.signInProgress) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return SizedBox(
+                      height: 56,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            signIn(signInScreenController);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor: isButtonEnabled
+                              ? const Color.fromRGBO(52, 152, 219, 1)
+                              : const Color.fromRGBO(244, 244, 244, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        child: Text(
+                          'Sign in',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: isButtonEnabled
+                                ? const Color.fromRGBO(255, 255, 255, 1)
+                                : const Color.fromRGBO(201, 201, 206, 1),
+                          ),
                         ),
                       ),
-                      child: Text(
-                        'Sign in',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: isButtonEnabled
-                              ? const Color.fromRGBO(255, 255, 255, 1)
-                              : const Color.fromRGBO(201, 201, 206, 1),
-                        ),
-                      ),
-                    ),
-                  ),
+                    );
+                  }),
                   const SocialSignUpLogInSection(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -196,7 +205,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.offAll(() => SignUpScreen());
+                          Get.offAll(() => const SignUpScreen());
                         },
                         child: const Text(
                           'Register Now',
@@ -219,5 +228,24 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> signIn(SignInScreenController controller) async {
+    final response = await controller.signIn(
+      emailController.text.trim(),
+      passwordController.text,
+    );
+    if (response) {
+      Get.offAll(() => const HomeScreen());
+    } else {
+      Get.snackbar(
+        'Failed',
+        'Sign in failed! Try again',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        borderRadius: 10,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 }

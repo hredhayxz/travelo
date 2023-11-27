@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:travelo/data/models/network_response.dart';
-import 'package:travelo/presentation/state_holders/auth/auth_controller.dart';
 
 class NetworkCaller {
 
@@ -20,17 +19,14 @@ class NetworkCaller {
       );
       log(response.statusCode.toString());
       log(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201 ) {
         return NetworkResponse(
           true,
           response.statusCode,
           jsonDecode(response.body),
         );
-      } else if (response.statusCode == 401) {
-        if (isLogin == false) {
-          //gotoLogin();
-        }
-      } else {
+      }  else {
+        log('I am error');
         return NetworkResponse(false, response.statusCode, null);
       }
     } catch (e) {

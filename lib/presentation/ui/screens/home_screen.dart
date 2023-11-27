@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:travelo/presentation/state_holders/auth/auth_controller.dart';
+import 'package:travelo/presentation/ui/screens/auth/signin_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -39,7 +43,12 @@ class HomeScreen extends StatelessWidget {
             ),
             const Spacer(),
             InkWell(
-              onTap: () {},
+              onTap: () async {
+                Get.offAll(() => const SignInScreen());
+                await AuthController.clear();
+                final SharedPreferences prefs= await SharedPreferences.getInstance();
+                prefs.setBool('is_first_time', false);
+              },
               child: ClipOval(
                 child: Container(
                   color: const Color.fromRGBO(255, 255, 255, 1),
