@@ -11,7 +11,7 @@ A simple user authentication authentication application
 ## Responsibilities
 As the creator of Travelo, my responsibilities included:
 
- - App Development: Developing and designing the CraftyBay ecommerce app, ensuring a user-friendly interface and smooth navigation.
+ - App Development: Developing and designing the Travelo app, ensuring a user-friendly interface and smooth navigation.
 
  - User Sign-In: Creating a seamless user sign-in process.
 
