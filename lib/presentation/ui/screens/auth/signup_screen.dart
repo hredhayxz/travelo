@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:travelo/presentation/state_holders/auth/signup_screen_controller.dart';
 import 'package:travelo/presentation/ui/screens/auth/signin_screen.dart';
 import 'package:travelo/presentation/ui/utility/assets_path.dart';
 import 'package:travelo/presentation/ui/widgets/congratulations_custom_dialog.dart';
@@ -145,32 +146,41 @@ class SignUpScreen extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    height: 56,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Get.dialog(const CongratulationsCustomDialog());
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: const Color.fromRGBO(244, 244, 244, 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                  GetBuilder<SignUpScreenController>(
+                      builder: (signUpScreenController) {
+                    if (signUpScreenController.signUpInProgress) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return SizedBox(
+                      height: 56,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            signUp(signUpScreenController);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor:
+                              const Color.fromRGBO(244, 244, 244, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        child: const Text(
+                          'Sign up',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromRGBO(201, 201, 206, 1),
+                          ),
                         ),
                       ),
-                      child: const Text(
-                        'Sign up',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Color.fromRGBO(201, 201, 206, 1),
-                        ),
-                      ),
-                    ),
-                  ),
+                    );
+                  }),
                   const SocialSignUpLogInSection(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -211,5 +221,22 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> signUp(SignUpScreenController controller) async {
+    final response = await controller.signUp(fullNameController.text.trim(),
+        emailController.text.trim(), passwordController.text,confirmPasswordController.text);
+    if (response) {
+      Get.dialog(const CongratulationsCustomDialog());
+    } else {
+      Get.snackbar(
+        'Failed',
+        'Sign up failed! Try again',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        borderRadius: 10,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
   }
 }

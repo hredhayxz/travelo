@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:travelo/presentation/ui/screens/auth/signin_screen.dart';
+import 'package:travelo/presentation/ui/screens/auth/signup_screen.dart';
 import 'package:travelo/presentation/ui/utility/assets_path.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> goToNextScreen() async {
     Future.delayed(const Duration(seconds: 2)).then((value) {
-      Get.offAll(() => SignInScreen());
+      Get.offAll(() => SignUpScreen());
     });
   }
 
