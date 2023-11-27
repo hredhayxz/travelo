@@ -104,11 +104,13 @@ class OtpVerificationScreen extends StatelessWidget {
                           if (enteredOTP.length == 4) {
                             verifyOtp(otpVerificationController);
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content:
-                                    Text('Please enter a valid 4-digit OTP'),
-                              ),
+                            Get.snackbar(
+                              'Incomplete',
+                              'Please enter a valid 4-digit OTP',
+                              backgroundColor: Colors.red,
+                              colorText: Colors.white,
+                              borderRadius: 10,
+                              snackPosition: SnackPosition.BOTTOM,
                             );
                           }
                         },

@@ -41,7 +41,24 @@ dependencies:
   http: ^1.1.0
   shared_preferences: ^2.2.2
   pin_code_text_field: ^1.8.0
+  flutter_launcher_icons: ^0.13.1   #icon generate command: flutter pub run flutter_launcher_icons
   device_preview: ^1.1.0
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/images/travelologo.png"
+  web:
+    generate: true
+    image_path: "assets/images/travelologo.png"
+  macos:
+    generate: true
+    image_path: "assets/images/travelologo.png"
+    icon_size: 48
+
+
 
 dev_dependencies:
   flutter_test:

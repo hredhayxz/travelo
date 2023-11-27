@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:travelo/data/models/network_response.dart';
 import 'package:travelo/data/services/network_caller.dart';
 import 'package:travelo/data/utility/urls.dart';
-import 'package:travelo/presentation/state_holders/auth/auth_controller.dart';
+import 'package:travelo/presentation/state_holders/auth/auth_and_navigation_controller.dart';
 
 class SignInScreenController extends GetxController {
   bool _signInProgress = false;
@@ -19,18 +19,17 @@ class SignInScreenController extends GetxController {
     _signInProgress = true;
     update();
     Map<String, dynamic> requestBody = {
-
       "email": email,
       "password": password,
     };
     final NetworkResponse response =
-    await NetworkCaller().postRequest(Urls.signIn, requestBody);
+        await NetworkCaller().postRequest(Urls.signIn, requestBody);
     _signInProgress = false;
     update();
     print(response.isSuccess);
     if (response.isSuccess) {
       _token = response.responseJson!['token'].toString();
-      await AuthController.setAccessToken(_token);
+      await AuthAndNavigationController.setAccessToken(_token);
       log(_token);
       return true;
     } else {

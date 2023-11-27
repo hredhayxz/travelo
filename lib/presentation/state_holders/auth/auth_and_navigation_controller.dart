@@ -1,9 +1,25 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthController {
+class AuthAndNavigationController {
   static String? _accessToken;
+  static bool? _isFirstTimeOpening;
 
   static String? get accessToken => _accessToken;
+
+  static bool? get isFirstTimeOpening => _isFirstTimeOpening;
+
+  static Future<void> setAppInstallValue(bool val) async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    await sharedPreferences.setBool('is_first_time', val);
+    _isFirstTimeOpening = val;
+  }
+
+  static Future<void> getAppInstallValue() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    _isFirstTimeOpening = sharedPreferences.getBool('is_first_time');
+  }
 
   static Future<void> setAccessToken(String token) async {
     final SharedPreferences sharedPreferences =
