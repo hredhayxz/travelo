@@ -7,14 +7,9 @@ import 'package:travelo/presentation/ui/utility/assets_path.dart';
 import 'package:travelo/presentation/ui/widgets/form_container.dart';
 import 'package:travelo/presentation/ui/widgets/social_signup_logIn_section.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignInScreen extends StatelessWidget {
+  SignInScreen({super.key});
 
-  @override
-  State<SignInScreen> createState() => _SignInScreenState();
-}
-
-class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
@@ -177,7 +172,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.offAll(() => const SignUpScreen());
+                          Get.offAll(() => SignUpScreen());
                         },
                         child: const Text(
                           'Register Now',

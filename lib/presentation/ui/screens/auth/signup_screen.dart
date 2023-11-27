@@ -7,14 +7,9 @@ import 'package:travelo/presentation/ui/widgets/congratulations_custom_dialog.da
 import 'package:travelo/presentation/ui/widgets/form_container.dart';
 import 'package:travelo/presentation/ui/widgets/social_signup_logIn_section.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({super.key});
 
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController fullNameController = TextEditingController();
 
   final TextEditingController emailController = TextEditingController();
@@ -193,7 +188,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.offAll(() => const SignInScreen());
+                          Get.offAll(() => SignInScreen());
                         },
                         child: const Text(
                           'Sign in',
