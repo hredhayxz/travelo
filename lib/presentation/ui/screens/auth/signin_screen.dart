@@ -7,9 +7,15 @@ import 'package:travelo/presentation/ui/utility/assets_path.dart';
 import 'package:travelo/presentation/ui/widgets/form_container.dart';
 import 'package:travelo/presentation/ui/widgets/social_signup_logIn_section.dart';
 
-class SignInScreen extends StatelessWidget {
-  SignInScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  bool isButtonEnabled = false;
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passwordController = TextEditingController();
@@ -25,6 +31,20 @@ class SignInScreen extends StatelessWidget {
   final RegExp passwordRegex = RegExp(
     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
   );
+
+  @override
+  void initState() {
+    super.initState();
+    emailController.addListener(updateButtonState);
+    passwordController.addListener(updateButtonState);
+  }
+
+  void updateButtonState() {
+    setState(() {
+      isButtonEnabled =
+          emailController.text.isNotEmpty && passwordController.text.isNotEmpty;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,17 +160,21 @@ class SignInScreen extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
-                        backgroundColor: const Color.fromRGBO(244, 244, 244, 1),
+                        backgroundColor: isButtonEnabled
+                            ? const Color.fromRGBO(52, 152, 219, 1)
+                            : const Color.fromRGBO(244, 244, 244, 1),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
-                      child: const Text(
+                      child: Text(
                         'Sign in',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          color: Color.fromRGBO(201, 201, 206, 1),
+                          color: isButtonEnabled
+                              ? const Color.fromRGBO(255, 255, 255, 1)
+                              : const Color.fromRGBO(201, 201, 206, 1),
                         ),
                       ),
                     ),

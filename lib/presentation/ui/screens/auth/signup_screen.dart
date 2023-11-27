@@ -4,33 +4,52 @@ import 'package:get/get.dart';
 import 'package:travelo/presentation/state_holders/auth/signup_screen_controller.dart';
 import 'package:travelo/presentation/ui/screens/auth/signin_screen.dart';
 import 'package:travelo/presentation/ui/utility/assets_path.dart';
-import 'package:travelo/presentation/ui/widgets/congratulations_custom_dialog.dart';
 import 'package:travelo/presentation/ui/widgets/form_container.dart';
 import 'package:travelo/presentation/ui/widgets/social_signup_logIn_section.dart';
 
-class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
+
+  @override
+  _SignUpScreenState createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  bool isButtonEnabled = false;
 
   final TextEditingController fullNameController = TextEditingController();
-
   final TextEditingController emailController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
-
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // Email validation regex pattern
   final RegExp emailRegex = RegExp(
     r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$',
   );
 
-  // Password validation regex pattern
   final RegExp passwordRegex = RegExp(
     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
   );
+
+  @override
+  void initState() {
+    super.initState();
+    fullNameController.addListener(updateButtonState);
+    emailController.addListener(updateButtonState);
+    passwordController.addListener(updateButtonState);
+    confirmPasswordController.addListener(updateButtonState);
+  }
+
+  void updateButtonState() {
+    setState(() {
+      isButtonEnabled = fullNameController.text.isNotEmpty &&
+          emailController.text.isNotEmpty &&
+          passwordController.text.isNotEmpty &&
+          confirmPasswordController.text.isNotEmpty;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,40 +166,44 @@ class SignUpScreen extends StatelessWidget {
                     height: 20,
                   ),
                   GetBuilder<SignUpScreenController>(
-                      builder: (signUpScreenController) {
-                    if (signUpScreenController.signUpInProgress) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
+                    builder: (signUpScreenController) {
+                      if (signUpScreenController.signUpInProgress) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return SizedBox(
+                        height: 56,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              signUp(signUpScreenController);
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: isButtonEnabled
+                                ? const Color.fromRGBO(52, 152, 219, 1)
+                                : const Color.fromRGBO(244, 244, 244, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          child: Text(
+                            'Sign up',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: isButtonEnabled
+                                  ? const Color.fromRGBO(255, 255, 255, 1)
+                                  : const Color.fromRGBO(201, 201, 206, 1),
+                            ),
+                          ),
+                        ),
                       );
-                    }
-                    return SizedBox(
-                      height: 56,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            signUp(signUpScreenController);
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          backgroundColor:
-                              const Color.fromRGBO(244, 244, 244, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                        child: const Text(
-                          'Sign up',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromRGBO(201, 201, 206, 1),
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
+                    },
+                  ),
                   const SocialSignUpLogInSection(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -224,8 +247,12 @@ class SignUpScreen extends StatelessWidget {
   }
 
   Future<void> signUp(SignUpScreenController controller) async {
-    final response = await controller.signUp(fullNameController.text.trim(),
-        emailController.text.trim(), passwordController.text,confirmPasswordController.text);
+    final response = await controller.signUp(
+      fullNameController.text.trim(),
+      emailController.text.trim(),
+      passwordController.text,
+      confirmPasswordController.text,
+    );
     if (response) {
       //Get.dialog(const CongratulationsCustomDialog());
     } else {
