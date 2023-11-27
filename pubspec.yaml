@@ -42,7 +42,6 @@ dependencies:
   shared_preferences: ^2.2.2
   pin_code_text_field: ^1.8.0
   flutter_launcher_icons: ^0.13.1   #icon generate command: flutter pub run flutter_launcher_icons
-  device_preview: ^1.1.0
 
 
 flutter_launcher_icons:
