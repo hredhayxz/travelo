@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:travelo/presentation/ui/screens/auth/signin_screen.dart';
 import 'package:travelo/presentation/ui/utility/assets_path.dart';
+import 'package:travelo/presentation/ui/widgets/congratulations_custom_dialog.dart';
 import 'package:travelo/presentation/ui/widgets/form_container.dart';
 import 'package:travelo/presentation/ui/widgets/social_signup_logIn_section.dart';
 
@@ -12,9 +13,9 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(255,255,255, 1),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(255,255,255, 1),
+        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
         title: const Text('Sign up'),
       ),
       body: SafeArea(
@@ -96,7 +97,9 @@ class SignUpScreen extends StatelessWidget {
                   height: 56,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.dialog(const CongratulationsCustomDialog());
+                    },
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       backgroundColor: const Color.fromRGBO(244, 244, 244, 1),
@@ -155,4 +158,3 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
-
