@@ -8,6 +8,8 @@ class FormContainer extends StatelessWidget {
     required this.hint,
     required this.keyboardType,
     required this.obscureText,
+    required this.controller,
+    required this.validator,
   }) : super(key: key);
 
   final IconData icon;
@@ -15,6 +17,8 @@ class FormContainer extends StatelessWidget {
   final String hint;
   final TextInputType keyboardType;
   final bool obscureText;
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +62,8 @@ class FormContainer extends StatelessWidget {
                     ),
                     keyboardType: keyboardType,
                     obscureText: obscureText,
+                    controller: controller,
+                    validator: validator,
                   ),
                 ],
               ),

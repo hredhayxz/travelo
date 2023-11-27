@@ -47,8 +47,7 @@ class SocialSignUpLogInSection extends StatelessWidget {
         Row(
           children: [
             OptionalSignUpLoginContainer(
-                optionIcon: AssetsPath.googleIconSVG,
-                optionTitle: 'Google'),
+                optionIcon: AssetsPath.googleIconSVG, optionTitle: 'Google'),
             const SizedBox(
               width: 12,
             ),
