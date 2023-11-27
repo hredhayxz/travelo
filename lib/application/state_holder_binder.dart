@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:travelo/presentation/state_holders/auth/otp_verification_controller.dart';
 import 'package:travelo/presentation/state_holders/auth/signin_screen_controller.dart';
 import 'package:travelo/presentation/state_holders/auth/signup_screen_controller.dart';
-import 'package:travelo/presentation/ui/screens/bottom_nav_controller.dart';
+import 'package:travelo/presentation/state_holders/bottom_nav_controller.dart';
 
 class StateHolderBinder extends Bindings {
   @override

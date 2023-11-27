@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:travelo/presentation/state_holders/auth/auth_and_navigation_controller.dart';
 import 'package:travelo/presentation/ui/screens/auth/signin_screen.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:travelo/presentation/ui/screens/bottom_nav_controller.dart';
+import 'package:travelo/presentation/state_holders/bottom_nav_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
