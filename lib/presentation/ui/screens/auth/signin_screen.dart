@@ -5,7 +5,6 @@ import 'package:travelo/presentation/ui/screens/auth/signup_screen.dart';
 import 'package:travelo/presentation/ui/screens/home_screen.dart';
 import 'package:travelo/presentation/ui/utility/assets_path.dart';
 import 'package:travelo/presentation/ui/widgets/form_container.dart';
-import 'package:travelo/presentation/ui/widgets/optional_signup_login_container.dart';
 import 'package:travelo/presentation/ui/widgets/social_signup_logIn_section.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -36,7 +35,7 @@ class SignInScreen extends StatelessWidget {
                         AssetsPath.personIconSVG,
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 15,
                       ),
                       const Text(
                         'Welcome Back!',
