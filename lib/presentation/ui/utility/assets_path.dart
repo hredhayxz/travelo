@@ -6,4 +6,5 @@ class AssetsPath {
   static String personIconSVG = 'assets/images/person_icon.svg';
   static String googleIconSVG = 'assets/images/google.svg';
   static String facebookIconSVG = 'assets/images/facebook.svg';
+  static String congratsGIF = 'assets/images/congrats.gif';
 }
