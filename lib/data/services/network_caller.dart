@@ -13,10 +13,10 @@ class NetworkCaller {
       Response response = await post(
         Uri.parse(url),
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
           //'token': AuthController.accessToken.toString()
         },
-        body: jsonEncode(body),
+        body: body,
       );
       log(response.statusCode.toString());
       log(response.body);

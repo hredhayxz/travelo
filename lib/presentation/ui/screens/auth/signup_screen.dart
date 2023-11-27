@@ -227,7 +227,7 @@ class SignUpScreen extends StatelessWidget {
     final response = await controller.signUp(fullNameController.text.trim(),
         emailController.text.trim(), passwordController.text,confirmPasswordController.text);
     if (response) {
-      Get.dialog(const CongratulationsCustomDialog());
+      //Get.dialog(const CongratulationsCustomDialog());
     } else {
       Get.snackbar(
         'Failed',
