@@ -147,6 +147,10 @@ The Travelo directory structure is organized as follows:
 
 ```
 
+## Travelo WakaTime Overview
+[travelo - WakaTime.pdf](https://github.com/hredhayxz/travelo/files/13483657/travelo.-.WakaTime.pdf)
+
+
 ## Contributors
 
 - [Md Alhaz Mondal Hredhay](https://github.com/hredhayxz)
